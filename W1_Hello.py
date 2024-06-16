@@ -1,5 +1,5 @@
 #ask user for their name #remove white space #capitalise return value
-#ame = input ("Whats your name?").strip().title()
+#name = input ("Whats your name?").strip().title()
 
 #split users names in first  and last
 #first, last = name.split(" ")
