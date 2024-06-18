@@ -1,11 +1,10 @@
-Greet = input("Greeting: ")
+answer = input("What is the Answer to the Great Question of Life, the Universe, and Everything? ")
 
-if Greet.startswith("Hello"):
-    print("$0")
-elif Greet.startswith("H" or "h"):
-    print("$20")
-else:
-    print("$100")
+match answer:
+    case "42" | "Fourty Two" | "Fourty-Two":
+        print("Yes")
+    case _:
+        print("No")
 
 
 
