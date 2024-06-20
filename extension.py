@@ -1,10 +1,34 @@
+def extension_id(ext):
 
-media = input("File name: ")
+    if ext.endswith(".gif"):
+        return "image/gif"
 
-if media.replace(" ","").lower().endswith((".gif", ".jpg", ".jpeg", ".png", ".pdf", ".txt", ".zip")):
-    print(media.lower().replace(".", "/"))
-    
-else:
-    print("application/octet-stream")
+    elif ext.endswith(".jpg"):
+        return "image/jpeg"
 
-# i need to ework this script with a better understanding of what is asked.
+    elif ext.endswith(".jpeg"):
+        return "image/jpeg"
+
+    elif ext.endswith(".png"):
+        return "image/png"
+
+    elif ext.endswith(".pdf"):
+        return "application/pdf"
+
+    elif ext.endswith(".zip"):
+        return "application/zip"
+
+    elif ext.endswith(".txt"):
+        return "text/plain"
+
+    else:
+        return "application/octet-stream"
+
+def main():
+    ext = input("File name: ").replace(" ","").lower()
+    result = extension_id(ext)
+    print(result)
+
+main()
+
+#can be  done with assert condtional (statement??)
