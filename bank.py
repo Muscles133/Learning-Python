@@ -6,3 +6,5 @@ elif Greet.replace(" ","").lower().startswith("h"):
     print("$20")
 else:
     print("$100")
+
+#testicle
