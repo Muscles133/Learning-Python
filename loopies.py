@@ -28,7 +28,7 @@
 
 
 def main():
-    plate = "CS50" #input("Plate: ")
+    plate = input("Plate: ")
     if is_valid(plate):
         print("Valid")
     else:

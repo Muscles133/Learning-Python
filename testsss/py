@@ -6,9 +6,9 @@
 
 
 
-s = "CS053"
 
-# if s[0].isalpha() and s[1].isalpha():
+
+# if s[:2].isalpha():
 #      print("yey")
     
 # else:
@@ -77,3 +77,25 @@ s = "CS053"
 #     return True
 
 # main()
+
+
+"""
+
+# start with 2 letters
+
+
+# Max 6 characters min 2 characters
+
+
+# if there are numbers no alpha after.
+
+
+# first number cannot be 0
+
+
+# only alpha and ints
+
+"""
+
+
+
