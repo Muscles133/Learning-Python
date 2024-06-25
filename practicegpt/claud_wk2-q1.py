@@ -71,20 +71,29 @@ Contains at least one digit
 Contains at least one special character (e.g., !@#$%^&*)
 """
 
-def main():
-    prime = int(input("Give me a number and i will tell you if its a prime number: "))
-    if prime <= 1:
-        print("The number 1 is neither prime nor composite")
-    elif prime_check(prime) == True:
-        print(f"{prime} is a prime number")
-    else:
-        print(f"{prime} is not a prime number")
+# def main():
+#     prime = int(input("Give me a number and i will tell you if its a prime number: "))
+#     if prime <= 1:
+#         print("The number 1 is neither prime nor composite")
+#     elif prime_check(prime) == True:
+#         print(f"{prime} is a prime number")
+#     else:
+#         print(f"{prime} is not a prime number")
 
-def prime_check(n):
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return False
+# def prime_check(n):
+#     for i in range(2, int(n**0.5) + 1):
+#         if n % i == 0:
+#             return False
         
-    return True
+#     return True
         
-main()
+# main()
+
+
+# def prime_check(n):
+#     if n <= 1:
+#         return False
+#     for i in range(2, int(n**0.5) + 1):
+#         if n % i == 0:
+#             return False
+#     return True
