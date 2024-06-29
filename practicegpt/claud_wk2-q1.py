@@ -52,7 +52,7 @@ Create a program that asks the user for a number and calculates its factorial us
 #         while n > 0:
 #             result *= n
 #             n -= 1
-#         return result
+#         return result 
 
 """
 Prime Number Checker:
@@ -97,3 +97,66 @@ Contains at least one special character (e.g., !@#$%^&*)
 #         if n % i == 0:
 #             return False
 #     return True
+
+
+# for i in range(1,101,1):
+#     if i%5 == 0 and not i%3:
+#         print("FizzBuzz")
+
+#     elif i%3 == 0:
+#         print("Fizz")
+
+#     elif i%5 == 0:
+#         print("Buzz")
+
+#     else:
+#         print(i)
+
+# 8 characters long
+# at least one uppercase
+# at lease one lower case
+# at least 1 special 
+# at least one digit
+
+def main():
+    password = input("Password Strength Check: ")
+    if check_pw(password):
+        print(f"{password} is strong")
+    else:
+        print(f"{password} sucks. get a new one")
+
+def check_pw(p):
+    length = len(p)
+    if length == 8:
+        if alpha(p):
+            if digits(p):
+                if has_special_char(p):
+                    return True
+                else:
+                    False
+            else:
+                False
+        else:
+            False
+    else:
+        False
+
+def alpha(a):
+    for i in a:
+        if i.isalpha():
+            return True
+        else:
+            False
+
+def digits(d):
+    for i in d:
+        if i.isdigit():
+            return True
+        else:
+            False
+
+def has_special_char(password):
+    special_chars = "!@#$%^&*()-+?_=,<>/"
+    return any(char in special_chars for char in password)
+
+main()
