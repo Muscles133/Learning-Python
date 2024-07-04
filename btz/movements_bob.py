@@ -3,7 +3,7 @@ import numpy as np
 import pyautogui
 import keyboard
 
-def detect_red_icon_movement(threshold=70):
+def detect_red_icon_movement(threshold=80):
     # Get the screen size
     screen_width, screen_height = pyautogui.size()
 
@@ -51,7 +51,7 @@ if __name__ == "__main__":
             if detect_red_icon_movement():
                 print("Red icon movement detected!")
             else:
-                print("No movement detected.")
-            pyautogui.sleep(0.3)  # Add a small delay to prevent excessive CPU usage
+                pass #print("No movement detected.")
+            pyautogui.sleep(0.4)  # Add a small delay to prevent excessive CPU usage
     except KeyboardInterrupt:
         print("\nScript stopped by user.")
