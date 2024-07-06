@@ -33,6 +33,40 @@ if key in d:
     ...
 wherein d is a dict and key is a str.
 
-Be sure to avoid or catch any KeyError.
+Be sure to avoid or catch any KeyError. 
 
 """
+
+def main():
+    menu = {
+        "Baja Taco": 4.25,
+        "Burrito": 7.50,
+        "Bowl": 8.50,
+        "Nachos": 11.00,
+        "Quesadilla": 8.50,
+        "Super Burrito": 8.50,
+        "Super Quesadilla": 9.50,
+        "Taco": 3.00,
+        "Tortilla Salad": 8.00
+    }
+
+
+    while True:
+        try:
+            total_cost = 0
+            item = input("Item: ").title() #prompts for the fruit
+            
+            if item == "^D":
+                print(f"Your bill comes to ${total_cost}")
+                break
+            else:
+                total_cost += (menu[item])# adds the cost of eac item togeather
+
+
+        except EOFError:
+            pass
+        except KeyError:
+            pass
+
+
+main()
