@@ -20,16 +20,28 @@ def print_row(width):
 main()
 """
 
+# def main():
+#     print_square(3)
+
+# def print_square(size):
+#     # for eache row in square
+#     for i in range(size):
+#         # for each brick in row
+#         for j in range(size):
+#             #print brick
+#             print("#", end="")
+#         print()
+
+# main()
+
 def main():
-    print_square(3)
+    height = int(input("Height: "))
+    pyramid(height)
 
-def print_square(size):
-    # for eache row in square
-    for i in range(size):
-        # for each brick in row
-        for j in range(size):
-            #print brick
-            print("#", end="")
-        print()
+def pyramid(n):
+    for i in range(n):
+        # print (i, end = " ")
+        print("#" * (i+1))
 
-main()
+if __name__ == "__main__":
+    main()

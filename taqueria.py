@@ -50,23 +50,26 @@ def main():
         "Tortilla Salad": 8.00
     }
 
-
+   
+    total_cost = 0
     while True:
         try:
-            total_cost = 0
-            item = input("Item: ").title() #prompts for the fruit
-            
-            if item == "^D":
-                print(f"Your bill comes to ${total_cost}")
-                break
-            else:
-                total_cost += (menu[item])# adds the cost of eac item togeather
-
+                item = input("Item: ").title() #prompts for the item
+                total_cost += (menu[item])# adds the cost of each item togeather
+                print(f"Total: ${total_cost:.2f}")
 
         except EOFError:
-            pass
-        except KeyError:
-            pass
+                break
 
+        except KeyError:
+                pass
 
 main()
+
+
+# try:
+#     while True:
+#         user_input = input("Enter something (Ctrl+D to exit): ")
+#         print("You entered:", user_input)
+# except EOFError:
+#     print("\nCtrl+D detected. Exiting the program.")
