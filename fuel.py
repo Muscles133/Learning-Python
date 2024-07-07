@@ -6,12 +6,14 @@ def main():
             x,y = fract.split("/")
             result = fuel_convert(x,y)
             
-            if result >= 99:
+            if result >= 99 and result <= 100:
                 print("F")
                 break
-            elif result == 0:
+            elif result <= 1:
                 print("E")
                 break
+            elif result >=101:
+                pass
             else:
                 print(f"{result:.0f}%")
                 break
