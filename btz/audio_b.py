@@ -25,7 +25,7 @@ def cast(isBait):
         print("You caught something")
 
 if __name__ == "__main__":
-    hwnd = win32gui.FindWindow(None, "World of Warcraft")
+    hwnd = win32gui.FindWindow(None, "Parsec") #default is world of warcraft
     p = pyaudio.PyAudio()
     deviceIndex = next((i for i in range(p.get_device_count()) if "Stereo Mix" in p.get_device_info_by_index(i)["name"]), None)
 
@@ -73,3 +73,15 @@ if __name__ == "__main__":
     except Exception as e:
         print(e)
         p.terminate()
+
+
+
+"""
+
+line 28 looks at the window for watching the sound. i have changed this to parsec
+line 61 is where you collect the loot
+line 21 and 20 are the disabled f8 cast and collect.
+
+
+
+"""
