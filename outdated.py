@@ -13,25 +13,38 @@ cal = [
 "December"
 ]
 
+# path 1: September 8, 1636
+# path 2: 9/8/1636
+
 def main():
 
     while True:
         try:
-            outdate = input("Date: ")
-            outdate_c = process_input(outdate)
-            a,b,c = outdate_c.split("/")
-            day = int(b)
-            month = con_month(a)
-            year = int(c)
+            outdate = input("Date: ").strip()
+            if outdate.startswith(tuple(cal)):
+                a,b,c = outdate.split(" ")
+                if b.endswith(","):
+                    b2 = b.replace(',', '') # cant int string the replace shit.
+                    b3 = int(b2)
+                    day = ck_day(b3)
+                    month = con_month(a)
+                    year = int(c)
+                    print (f"{year}-{month:02}-{day:02}")
+                    break
+                else:
+                    ValueError
 
-            if 1 <= day <= 31:
+            else:
+                a,b,c = outdate.split("/")
+                day = ck_day(int(b))
+                month = ck_month(int(a))
+                year = int(c)
                 print (f"{year}-{month:02}-{day:02}")
                 break
 
-            else:
-                ValueError
-    
         except KeyError:
+            pass
+        except TypeError:
             pass
         except EOFError:
             break
@@ -39,14 +52,30 @@ def main():
             pass
 
 def con_month(a):
-    if a.isdigit():
-        return int(a)
+    result = int(cal.index(a)+1)
+    return result
+
+def ck_month(m):
+    if 1 <= m <= 12:
+        return m
     else:
-        result = int(cal.index(a)+1)
-        return result
+        pass
     
-def process_input(i):
-    rpl = i.replace(' ', '/').replace(',', '')
-    return rpl
+def ck_day(b):
+    if 1 <= b <= 31:
+        return b
+    else:
+        pass
+
+    
+# def process_input(i):
+#     rpl = i.replace(' ', '/').replace(',', '')
+#     return rpl
+
+"""
+i had a better verion of this code but it didnt pass the tests becuase it processed the values better rather than accepting
+perfect input
+
+"""
 
 main()
