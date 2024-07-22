@@ -9,11 +9,12 @@ students = {
     "Draco": "Slytherin"
 }
 
-# for student in students:
+for student in students:
+    print(student)
 #     print(student, students[student], sep=", ")
 
 
-print(students["Hermione"])
+# print(students["Hermione"])
 
 #print(students[1])
 
