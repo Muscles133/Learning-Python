@@ -4,28 +4,47 @@ import sys
 def main():
     lvl = get_level()       # gets the correct level
     score = 0
+    game_list = []
+    game_count =  0
 
-    for _ in range(10):                 # populate games
-        x = generate_integer(lvl)
-        y = generate_integer(lvl)
-        result = x + y
-        tries = 0
-        while tries != 3:
-            try:
-                guess = int(input(f"{x}+{y}="))
-                if guess == result:
+    while game_count != 10:                 # populate games
+            x = generate_integer(lvl)
+            y = generate_integer(lvl)
+            problem = (f"{x} + {y}")
+            if problem in game_list:
+                 pass
+            elif problem != game_list:
+                game_list.append(problem)
+                result = x + y
+                tries = 0
+                game_count += 1
+
+                while tries != 3:
+                    try:
+                        guess = int(input(f"{x} + {y} ="))
+                        if guess == result:
+                            score += 1
+                            break
+
+                        else:
+                            tries += 1
+                            print("EEE")
+                            pass
+                                        
+                    except ValueError:
+                            tries += 1
+                            print("EEE")
+                            pass
+                        
+                    except EOFError:
+                        sys.exit(f"Exit")
+
+                if tries == 3:
+                    print(f"{x} + {y} = {result}")
                     tries = 0
-                    score += 1
-                    break
                 else:
-                     tries += 1
-
-            except ValueError:
-                tries += 1
-                pass
-            except EOFError:
-                sys.exit(f"Exit")
-        print(f"{x}+{y}={result}")
+                     tries = 0
+                     
 
     print(f"Score: {score}")
 
@@ -44,7 +63,7 @@ def get_level():
 
 def generate_integer(level):
     if level == 1:
-         return random.randint(1,9)
+         return random.randint(0,9)
     elif level == 2:
          return random.randint(10, 99)
     else:
