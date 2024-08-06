@@ -12,6 +12,7 @@ def main():
     print("x squared is", square(x))
 
 def square(n):
-    return (f"{n*n:.0f}")
+    return n * n    #(f"{n*n:.0f}")
 
-main()
+if __name__ == "__main__":
+    main()
