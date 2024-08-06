@@ -54,6 +54,7 @@ if __name__ == "__main__":
                     data = np.frombuffer(data, dtype=np.int16) / 32768.0
                     rms = np.sqrt(np.mean(data**2))
                     db = np.round(20 * np.log10(rms / ((2**15) / 32768.0)))
+                    time.sleep(0.5)
                     print("dB:", db)
 
                     if db > DECIBEL_THRESHOLD:
