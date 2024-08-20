@@ -1,10 +1,20 @@
-Greet = input("Greeting: ")
 
-if Greet.replace(" ","").lower().startswith("hello"):
-    print("$0")
-elif Greet.replace(" ","").lower().startswith("h"):
-    print("$20")
-else:
-    print("$100")
+def main():
 
-#testicle
+    greet = input("Greeting: ")
+    result = value(greet)
+    print (f"${value(greet)})
+
+
+def value(greeting):
+
+    if greeting.replace(" ","").lower().startswith("hello"):
+        return 0
+    elif greeting.replace(" ","").lower().startswith("h"):
+        return 20
+    else:
+        return 100
+
+
+if __name__ == "__main__":
+    main()

@@ -1,30 +1,21 @@
+import pytest
 from twttr import shorten
 
 
 def test_lower():
-    try:
-        assert shorten("aeiou") == ""
-    except AssertionError:
-        print("Failed to remove lowercase vowels")
+    assert shorten("aeiou") == ""
 
 def test_upper():
-    try:
-        assert shorten("AEIOU") == ""
-    except AssertionError:
-        print("Failed to remove upper vowels")
-
+    assert shorten("AEIOU") == ""
 
 def test_mixed_case():
-    try:
-        assert shorten("HeLlO WoRLd") == "HLl WRLd"
-
-    except AssertionError:
-        print("Failed on mixed case input")
-
+    assert shorten("HeLlO WoRLd") == "HLl WRLd"
 
 def test_no_vowels():
-    try:
-        assert shorten("LSDtgs") == "LSDtgs"
+    assert shorten("LSDtgs") == "LSDtgs"
 
-    except AssertionError:
-        print("Modified string without vowels")
+def test_punct():
+    assert shorten(".?-:;(),}{][)(!_") == ".?-:;(),}{][)(!_"
+
+def test_nums():
+    assert shorten("123123aaaaaaad") == "123123d"
