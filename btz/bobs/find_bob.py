@@ -1,6 +1,7 @@
 import pyautogui, time, keyboard, os
 import numpy as np
 import soundcard as sc
+import random
 
 # Function to find the bobber in the game
 def find_bob():
@@ -38,9 +39,12 @@ def find_bob():
                         # Move the mouse to the calculated location
                         pyautogui.moveTo(screen_loc_offset[0], screen_loc_offset[1], np.random.uniform(0.4,1.1), pyautogui.easeOutQuad)
                         bob_found = True
+                        return bob_found
                         break
         except pyautogui.ImageNotFoundException:
             pass
         break
 
-find_bob()
+
+if __name__ == "__main__":
+    find_bob()
