@@ -2,8 +2,8 @@
 def main():
 
     greet = input("Greeting: ")
-    result = value(greet)
-    print (f"${value(greet)})
+    print(f"${value(greet)}")
+ 
 
 
 def value(greeting):
