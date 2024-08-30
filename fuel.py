@@ -3,60 +3,48 @@ def main():
     while True:
         try:
             fract = input("Fraction: ")
-            # x,y = fract.split("/")
-            # result = fuel_convert(x,y)
-            print(convert(fract))
-            
-            # if result >= 99 and result <= 100:
-            #     print("F")
-            #     break
-            # elif result <= 1:
-            #     print("E")
-            #     break
-            # elif result >=101:
-            #     pass
-            # else:
-            #     print(f"{result:.0f}%")
-            #     break
+            percent = convert(fract)
+            status = gauge(percent)
+            print(status)
+            break
 
-        except (ValueError, ZeroDivisionError):
+        except (ValueError, ZeroDivisionError) as e:
+            print(f"Error: {e}")
             pass
 
 
 
 def convert(fraction):
-    x,y = fraction.split("/")
 
-    if x is not int:
-        raise ValueError
-    elif y is not int:
-        raise ValueError
-    elif not y < x:
-        raise ValueError
-    elif y == 0:
-        raise ZeroDivisionError
-    else:
-        percent = int(x) / int(y) *100
+        x,y = map(int, fraction.split("/"))
+
+        if not isinstance(x, int):
+            raise ValueError("Invalid input: Both numerator and denominator must be integers")
+        if not isinstance(y, int):
+            raise ValueError("Invalid input: Both numerator and denominator must be integers")
+        if y > 0 and y <= x:
+            raise ValueError("y must be less than x")
+        if y == 0:
+            raise ZeroDivisionError("y cannot be zero")
+      
+        percent = (x / y) * 100
         return percent
     
 
-def convert(fraction):
-    ...
 
+def gauge(p):      #p denotes percent from convert
 
-def gauge(percentage):
-    ...
+    if p >=101:
+        raise ValueError("its more than 100%")
 
+    if p >= 99 and p <= 100:
+        return("F")
 
+    elif p <= 1:
+        return("E")
 
-
+    else:
+        return(f"{p:.0f}%")
 
 if __name__ == "__main__":
     main()
-
-
-    # def check_input(f):
-#     x,y = f.split("/")
-
-
-
