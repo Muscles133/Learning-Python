@@ -83,13 +83,13 @@ with open("students.csv") as file:
 for student in students:
     print(f"{student['name']} is in {student['house']}")
 
-"""
+
 students = []
 
 with open("students.csv") as file:
-    reader = csv.reader(file)
-    for name, home in reader:
-        students.append({"name":name, "house":home})
+    reader = csv.DictReader(file)
+    for row in reader:
+        students.append({"name": row["name"], "house": row["home"]})
 
 
     # for line in file:
@@ -101,4 +101,14 @@ with open("students.csv") as file:
 #     return student["name"]
 
 for student in sorted(students, key=lambda student: student["name"]):
-    print(f"{student['name']} is in {student['house']}")
+    print(f"{student['name']} is in {student['home']}")
+
+"""
+
+
+name = input("Whats your name? ")
+home = input("Where's you home? ")
+
+with open("Students.csv", "a") as file:
+    writer = csv.DictWriter(file, fieldnames=["name", "home"])
+    writer.writerow({"name": name, "home": home})
