@@ -7,6 +7,7 @@ from PIL import Image
 
 in_file = "before1.jpg" #sys.argv[1]
 out_file = "after1.jpg" #sys.argv[2]
+shirt_img = "shirt.png"
 
 
 with Image.open(in_file) as im:
@@ -23,7 +24,20 @@ with Image.open(in_file) as im:
 
     # Crop the image
     img_cropped = img_resized.crop((left, top, right, bottom))
-    
+
+    if img_cropped.mode != 'RGBA':
+            img_cropped = img_cropped.convert('RGBA')
+
+    with Image.open(shirt_img) as shirt:
+
+        if shirt.mode != 'RGBA':
+            shirt = shirt.convert('RGBA')
 
 
-img_cropped.save(out_file, format='JPEG')
+        result = Image.alpha_composite(img_cropped, shirt)
+        result = result.convert('RGB')
+
+
+        result.save(out_file, format="JPEG")
+        
+
