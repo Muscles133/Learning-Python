@@ -4,12 +4,16 @@ try:
     if len(sys.argv) == 2:
         for arg in sys.argv[1:]:
 
-            with open(arg, "r") as file:
-                content = file.read()
-                lines = content.split('\n')
-                non_empty_lines = [line.strip() for line in lines if line.strip() and not line.strip().startswith('#')]
-                count = len(non_empty_lines)
-                print(count)
+            if arg.endswith(".py"):
+
+                with open(arg, "r") as file:
+                    content = file.read()
+                    lines = content.split('\n')
+                    non_empty_lines = [line.strip() for line in lines if line.strip() and not line.strip().startswith('#')]
+                    count = len(non_empty_lines)
+                    print(count)
+            else:
+                sys.exit("Not a Python file")
 
     elif len(sys.argv) == 1:
         sys.exit("Too few command-line arguments")

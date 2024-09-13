@@ -7,9 +7,14 @@ try:
     if len(sys.argv) == 2:
         for arg in sys.argv[1:]:
 
-            with open(arg, "r") as file:
-                menu = csv.DictReader(file)
-                print(tabulate(menu, headers="keys", tablefmt="grid"))
+            if arg.endswith(".csv"):
+
+                with open(arg, "r") as file:
+                    menu = csv.DictReader(file)
+                    print(tabulate(menu, headers="keys", tablefmt="grid"))
+
+            else:
+                sys.exit("Not a CSV file")
 
 
     elif len(sys.argv) == 1:
