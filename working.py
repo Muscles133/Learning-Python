@@ -64,7 +64,7 @@ def convert(s):
 
     try:
         if matches := re.search(
-            rf"^({t}) ({ap}) to ({t}) ({ap})$", s
+            fr"^({t}) ({ap}) to ({t}) ({ap})$", s
         ):  # split the work into 4 parts
             start = matches.group(1)
             start_status = matches.group(2)
