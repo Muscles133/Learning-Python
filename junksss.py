@@ -1,8 +1,9 @@
 import sys
 import csv
 from PIL import Image
+import re
 
-
+"""
 
 
 in_file = "before1.jpg" #sys.argv[1]
@@ -40,4 +41,8 @@ with Image.open(in_file) as im:
 
         result.save(out_file, format="JPEG")
         
+"""
 
+start24 = 11
+start24 = f"{start24:02}"
+print(start24)
