@@ -12,18 +12,15 @@ def main():
         words = min_to_word(mins)
         print(words)
 
-        t = 127
-        print(min_to_word(t))
-
     except ValueError:
         sys.exit("Invalid date")
-
-
 
 def get_mins(m):
     try:
         birth = date.fromisoformat(m)
         today = date.today()
+        if birth > today:
+            raise ValueError("Birth date cannot be in the future")
         timedelta = today - birth
         secs = timedelta.total_seconds()
         mins = int(secs / 60)
@@ -32,14 +29,15 @@ def get_mins(m):
     except ValueError:
         raise ValueError("Invalid date")
 
-
 def min_to_word(mins):
     try:
         num = int(mins)
 
         num2 = p.number_to_words(num, andword="")
 
-        return f"{num2} minutes"
+        capit = num2.capitalize()
+
+        return f"{capit} minutes"
 
     except ValueError:
         raise ValueError("Invalid Number")

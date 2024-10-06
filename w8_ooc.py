@@ -141,7 +141,6 @@ def get_student():
 if __name__ == "__main__":
     main()
 
-    """
 
 
 class Student:
@@ -166,11 +165,11 @@ class Student:
         self._name = name
 
     
-    @property
+    @property  #getter
     def house(self):
         return self._house
     
-    @house.setter
+    @house.setter   #setter
     def house(self, house):
         if house not in ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]:
             raise ValueError("Invalid house")
@@ -191,3 +190,120 @@ def get_student():
 
 if __name__ == "__main__":
     main()
+
+       
+
+
+print(type(dict()))
+
+
+
+#sorting hat
+import random
+
+class Hat:
+    def __init__(self):
+        self.houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]
+
+    def sort(self, name):
+        print(name, "is in", random.choice(self.houses))
+
+hat = Hat()
+hat.sort("Harry")
+
+
+
+
+#sorting hat
+import random
+
+class Hat:
+    
+    houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]
+
+    @classmethod
+    def sort(cls, name):
+        print(name, "is in", random.choice(cls.houses))
+
+
+Hat.sort("Harry")
+
+
+
+
+class Student:
+    def __init__(self, name, house):
+        
+        self.name = name
+        self.house = house
+
+       
+
+    def __str__(self):
+        return f"{self.name} from {self.house}"
+    
+    @classmethod
+    def get(cls):
+        name = input("Name: ")
+        house = input("House: ")
+        return Student(name, house)
+    
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self, name):
+        if not name:
+            raise ValueError("Missing name")
+        self._name = name
+
+    
+    @property  #getter
+    def house(self):
+        return self._house
+    
+    @house.setter   #setter
+    def house(self, house):
+        if house not in ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]:
+            raise ValueError("Invalid house")
+        self._house = house
+    
+
+def main():
+    student = Student.get()
+    print(student)
+
+
+
+# def get_student():
+#     name = input("Name: ")
+#     house = input("House: ")
+#     return Student(name, house)
+
+
+if __name__ == "__main__":
+    main()
+
+    
+    """
+
+
+class Wizzard:
+    def __init__(self, name):
+        if not name:
+            raise ValueError("Missing name")
+        self.name = name
+
+
+
+class Student(Wizzard):
+
+    def __init__(self, name, house):
+        super().__init__(name)
+        self.house = house
+    
+class Professor(Wizzard):
+    def __init__(self, name, subject):
+        super().__init__(name)
+        self.subject = subject
