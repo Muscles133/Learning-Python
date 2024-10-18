@@ -25,11 +25,12 @@ class Deck:
         return self._attacktype
     
     def hand(self):
-        print("Your hand:")
+        print("Adventure Cards:")
         for i, card in enumerate(self._hand):
-            print(f"{i+1}. {card[0]} of {card[1]}")
+            print(f"[{i+1}] {card[0]} of {card[1]}", end=', ')
 
     def pick(self):
+
         if len(self._deck) > 0 and len(self._hand) < 9:
             random_index = random.randint(0, len(self._deck) - 1)
             item = self._deck.pop(random_index)
@@ -231,42 +232,42 @@ class Deck:
 
 
 def main():
-    dk = Deck()
+    ad = Deck()
     
     # Draw 9 cards
     for _ in range(9):
-        dk.pick()
+        ad.pick()
 
     
-    dk.hand()
+    ad.hand()
     
     while True:
         try:
             choose = input("\nMake a selection (e.g., '1,2,3' or '123'): ")
-            dk.select_cards(choose)
-            if dk.process_scream():
-                print(f"You {dk.attacktype()} at the monster with {dk.dice_rolled()} dice rolled!")
-                dk.dice_rolled()
+            ad.select_cards(choose)
+            if ad.process_scream():
+                print(f"You {ad.attacktype()} at the monster with {ad.dice_rolled()} dice rolled!")
+                ad.dice_rolled()
                 print("\nUpdated hand:")
-                dk.hand()
+                ad.hand()
 
-            elif dk.process_stomp():
+            elif ad.process_stomp():
                 print("\nMatch found!")
-                dk.dice_rolled()
+                ad.dice_rolled()
                 print("\nUpdated hand:")
-                dk.hand()
+                ad.hand()
 
-            elif dk.process_strike():
-                print(f"You {dk.attacktype()} at the monster with {dk.dice_rolled()} dice rolled!")
-                dk.dice_rolled()
+            elif ad.process_strike():
+                print(f"You {ad.attacktype()} at the monster with {ad.dice_rolled()} dice rolled!")
+                ad.dice_rolled()
                 print("\nUpdated hand:")
-                dk.hand()
+                ad.hand()
 
 
 
             else:
                 print("\nNo match found.")
-                dk.hand()
+                ad.hand()
             break
         except ValueError as e:
             print(f"Error: {e}")
@@ -274,3 +275,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    pass
