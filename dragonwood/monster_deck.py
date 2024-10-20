@@ -78,6 +78,10 @@ class Monster_deck:
                 return True
         return False
     
+    def ret_score(self):
+        return sum([card.score for card in self.discard_pile])
+
+    
     def disp_landscape(self):
         for i, no in enumerate(range(5)):
             letter = chr(ord('A') + i)
@@ -90,7 +94,6 @@ class Monster_deck:
 
         elif a == "b":
             return self.landscape[1]
-
         elif a == "c":
             return self.landscape[2]
 
@@ -102,20 +105,29 @@ class Monster_deck:
 
         return False
     
+    def mon_scream(self, a):
+        return a.scream
+    
+    def mon_strike(self, a):
+        return a.strike
+    
+    def mon_stomp(self, a):
+        return a.stomp
 
 
 
 
 
 
-    def get_deck_sizes(self):
-        """Returns the current size of all decks"""
+    def get_md_size(self):
+        """Returns the monster deck size"""
         return {
-            'main_deck': len(self.main_deck),
-            'deleted_cards': len(self.deleted_cards),
-            'landscape': len(self.landscape),
-            'discard_pile': len(self.discard_pile)
+            'main_deck': len(self.main_deck)
         }
+    
+    def get_ls_size(self):
+        """Returns the monster deck size"""
+        return len(self.landscape)
 
     def display_landscape(self):
         """Displays all monsters currently in the landscape"""

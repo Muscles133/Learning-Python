@@ -8,11 +8,13 @@ class Deck:
         self._chosen_cards = []
         self._num_dice = 0
         self._attacktype = ""
+        self._repack = 0
+        Deck.rebuild_deck(self)
         
-        characters = ["Blue Sorceress", "Orange Rogue", "Purple Warrior", "Green Ranger"]
-        for character in characters:
-            for value in range(1, 13):  # 1 to 12
-                self._deck.append((character, value))
+        # characters = ["Blue Sorceress", "Orange Rogue", "Purple Warrior", "Green Ranger"]
+        # for character in characters:
+        #     for value in range(1, 13):  # 1 to 12
+        #         self._deck.append((character, value))
 
     @property
     def deck(self):
@@ -24,10 +26,20 @@ class Deck:
     def attacktype(self):
         return self._attacktype
     
+    def repack(self):
+        return self._repack
+    
+    def rebuild_deck(self):
+        characters = ["Blue Sorceress", "Orange Rogue", "Purple Warrior", "Green Ranger"]
+        for character in characters:
+            for value in range(1, 13):  # 1 to 12
+                self._deck.append((character, value))
+    
     def hand(self):
         print("Adventure Cards:")
         for i, card in enumerate(self._hand):
-            print(f"[{i+1}] {card[0]} of {card[1]}", end=', ')
+            letter = chr(ord('A') + i)
+            print(f"[{letter}] {card[0]} of {card[1]}", end=', ')
 
     def pick(self):
 
@@ -36,19 +48,40 @@ class Deck:
             item = self._deck.pop(random_index)
             self._hand.append(item)
             return True
+        elif len(self._deck) == 0 and len(self._hand) <9:
+            Deck.rebuild_deck(self)
+            self._repack +=1
+            random_index = random.randint(0, len(self._deck) - 1)
+            item = self._deck.pop(random_index)
+            self._hand.append(item)
+            return True
+        
+        elif len(self._hand) >= 9:
+            print("You cant have more than 9 cards")
+
+            random.shuffle(self._hand)
+            for _ in range(1):
+                if self._hand:  # Check if deck is not empty
+                    self._hand.pop()
+            return True
+                    
+    
         return False
     
     def select_cards(self, input_string):
-        """this selects a card from the adventure deck. removed it and places it in the players hand"""
+        """This selects a card from the adventure deck, removes it and places it in the player's hand"""
         # Remove all spaces and commas
-        cleaned_input = ''.join(input_string.replace(',', '').split())
+        cleaned_input = ''.join(input_string.replace(',', '').split()).lower()
         
-        # Check if all characters are digits
-        if not cleaned_input.isdigit():
-            raise ValueError("Input must contain only numbers, spaces, or commas")
+        # Replace letters with numbers
+        converted = cleaned_input.replace('a',"1").replace('b',"2").replace('c','3')\
+                            .replace('d','4').replace('e','5').replace('f','6')\
+                            .replace('g','7').replace('h','8').replace('i','9')
+        #print(f"Converted string: {converted}")
         
         # Convert to list of integers
-        numbers = [int(num) for num in cleaned_input]
+        numbers = [int(num) for num in converted]
+        #print(f"Numbers list: {numbers}")
         
         # Validate each number is 1-9
         if not all(1 <= num <= 9 for num in numbers):
@@ -238,40 +271,15 @@ def main():
     for _ in range(9):
         ad.pick()
 
-    
     ad.hand()
+
+    print("")
+
+    print(ad.repack())
+
+
     
-    while True:
-        try:
-            choose = input("\nMake a selection (e.g., '1,2,3' or '123'): ")
-            ad.select_cards(choose)
-            if ad.process_scream():
-                print(f"You {ad.attacktype()} at the monster with {ad.dice_rolled()} dice rolled!")
-                ad.dice_rolled()
-                print("\nUpdated hand:")
-                ad.hand()
-
-            elif ad.process_stomp():
-                print("\nMatch found!")
-                ad.dice_rolled()
-                print("\nUpdated hand:")
-                ad.hand()
-
-            elif ad.process_strike():
-                print(f"You {ad.attacktype()} at the monster with {ad.dice_rolled()} dice rolled!")
-                ad.dice_rolled()
-                print("\nUpdated hand:")
-                ad.hand()
-
-
-
-            else:
-                print("\nNo match found.")
-                ad.hand()
-            break
-        except ValueError as e:
-            print(f"Error: {e}")
-            continue
+    
 
 if __name__ == "__main__":
     main()
